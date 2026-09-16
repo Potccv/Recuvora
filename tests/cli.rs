@@ -45,10 +45,12 @@ async fn repair_cli_persists_human_decision_and_rejects_a_control_directory_targ
     };
     use recuvora::recovery::workflow::{RepairConfig, now};
     let temp = TestDirectory::create()?;
-    for part in ["target", "review", "state"] {
+    let target_root = temp.path.join(".control").join("target");
+    fs::create_dir_all(&target_root)?;
+    for part in ["review", "state"] {
         fs::create_dir(temp.path.join(part))?;
     }
-    fs::write(temp.path.join("target/a.txt"), "before")?;
+    fs::write(target_root.join("a.txt"), "before")?;
     fs::write(temp.path.join("harness.json"), "{}")?;
     let policy = ApprovalPolicy {
         id: "cli-policy".into(),
@@ -67,7 +69,7 @@ async fn repair_cli_persists_human_decision_and_rejects_a_control_directory_targ
         harness_config: temp.path.join("harness.json"),
         execution_harness: "unused".into(),
         target_id: "target".into(),
-        target_root: temp.path.join("target"),
+        target_root,
         reviewer_directory: temp.path.join("review"),
         data_dir: temp.path.join("state"),
         allowed_files: vec!["a.txt".into()],

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0b0f14">
+    <meta name="description" content="Recuvora 可审查的 AI 恢复控制台">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https: http://localhost:* http://127.0.0.1:* http://[::1]:*; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <title>Recuvora · 控制台</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-skip-link="true">跳到主要内容</a>
+    <div id="app"></div>
+    <div id="route-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+    <noscript>
+      <div class="noscript">Recuvora 界面需要启用 JavaScript，并在连接设置中指定可信服务。</div>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Recuvora",
+  "version": "0.1.0",
+  "identifier": "com.recuvora.app",
+  "build": {
+    "features": ["desktop-ui"],
+    "frontendDist": "src/interfaces/ui/public"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Recuvora",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "resizable": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": false,
+    "icon": ["src/interfaces/ui/public/favicon.ico"]
+  }
+}

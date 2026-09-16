@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "extensions": [
+    {
+      "id": "harness-node",
+      "kind": "node",
+      "enabled": true,
+      "command": {
+        "program": "../node-install/harness-node.exe",
+        "args": ["--config", "../config/harness-node.json"],
+        "cwd": "../node-install"
+      },
+      "namespaces": [],
+      "allow_calls": [
+        {"contract": "recuvora.harness", "version": 1, "method": "run"},
+        {"contract": "recuvora.harness", "version": 1, "method": "projects"},
+        {"contract": "recuvora.harness", "version": 1, "method": "create_project"}
+      ],
+      "allow_nodes": []
+    }
+  ]
+}

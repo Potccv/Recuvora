@@ -1,0 +1,99 @@
+[package]
+name = "recuvora"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+publish = false
+default-run = "recuvora"
+autobins = false
+autotests = false
+
+[features]
+default = ["cli"]
+cli = []
+web-ui = []
+server = ["dep:axum"]
+desktop-ui = ["web-ui", "dep:tauri", "dep:tauri-build"]
+all-ui = ["web-ui", "desktop-ui"]
+
+[dependencies]
+tokio = { version = "1.53.1", features = ["rt-multi-thread", "macros", "sync", "time", "test-util", "fs", "io-util", "process", "signal", "net"] }
+axum = { version = "=0.8.9", optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+fs2 = "=0.4.3"
+tauri = { version = "=2.11.5", optional = true }
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3", optional = true }
+
+[target.'cfg(windows)'.dependencies]
+winapi-util = "=0.1.11"
+filepath = "=0.2.0"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[[bin]]
+name = "recuvora"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[[bin]]
+name = "recuvora-desktop"
+path = "src/bin/recuvora-desktop.rs"
+required-features = ["desktop-ui"]
+
+[[test]]
+name = "framework"
+path = "tests/framework.rs"
+
+[[test]]
+name = "recovery"
+path = "tests/recovery.rs"
+
+[[test]]
+name = "monitors"
+path = "tests/monitors.rs"
+
+[[test]]
+name = "monitor_wire"
+path = "tests/monitor_wire.rs"
+harness = false
+
+[[test]]
+name = "server_logs"
+path = "tests/server_logs.rs"
+harness = false
+required-features = ["server"]
+
+[[test]]
+name = "incidents"
+path = "tests/incidents.rs"
+
+[[test]]
+name = "cli"
+path = "tests/cli.rs"
+
+[[test]]
+name = "process_recovery"
+path = "tests/process_recovery.rs"
+
+[[test]]
+name = "harnesses"
+path = "tests/harnesses.rs"
+
+[[test]]
+name = "approval"
+path = "tests/approval.rs"
+
+[[test]]
+name = "extensions"
+path = "tests/extensions.rs"
+harness = false
+
+[[test]]
+name = "remote_harness"
+path = "tests/remote_harness.rs"
+harness = false
